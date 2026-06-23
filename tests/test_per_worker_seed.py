@@ -117,8 +117,8 @@ def test_worker_seed_with_torch():
     reason="PyTorch not available"
 )
 @pytest.mark.skipif(
-    sys.platform == "darwin",
-    reason="Multiprocessing test skipped on macOS due to spawn/fork issues"
+    sys.platform in ("darwin", "win32"),
+    reason="Multiprocessing test skipped on macOS/Windows due to spawn/fork issues"
 )
 def test_dataloader_epoch_diversity():
     """Test that DataLoader produces different augmentations across epochs with worker-aware seed."""
